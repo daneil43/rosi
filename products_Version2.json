@@ -1,0 +1,5 @@
+[
+  {"id":"p1","name":"حقيبة ظهر أنيقة","description":"حقيبة متينة وعصرية.","category":"أمتعة","price":10500,"image":"https://picsum.photos/seed/backpack/600/400"},
+  {"id":"p2","name":"ساعة ذكية","description":"تتبع النشاط وإشعارات.","category":"إلكترونيات","price":24999,"image":"https://picsum.photos/seed/watch/600/400"},
+  {"id":"p3","name":"سماعات لاسلكية","description":"صوت نقِي ووقت تشغيل طويل.","category":"إلكترونيات","price":7999,"image":"https://picsum.photos/seed/headset/600/400"}
+]

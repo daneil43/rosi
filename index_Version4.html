@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Platinum Store Pro</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="brand"><h1>Platinum Store Pro</h1><p class="muted">نسخة جاهزة للنشر</p></div>
+      <div class="actions"><button id="cart-btn" class="btn-ghost">السلة (<span id="cart-count">0</span>)</button></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>مرحباً — موقعك جاهز</h2>
+      <p class="muted">إذا كان لديك build (Angular) فسيُحاول المتصفح تحميله تلقائياً من الأمكنة الشائعة.</p>
+      <div class="controls">
+        <input id="search" placeholder="ابحث..." />
+        <select id="category-filter"><option value="">كل التصنيفات</option></select>
+      </div>
+    </section>
+
+    <div id="products-grid" class="grid"></div>
+
+    <aside id="cart-drawer" class="cart-drawer" aria-hidden="true">
+      <div class="cart-header"><h3>سلة</h3><button id="close-cart" class="btn-ghost">إغلاق</button></div>
+      <div id="cart-items" class="cart-items">لا توجد منتجات</div>
+      <div class="cart-footer">المجموع: <strong id="cart-total">0 د.ج</strong></div>
+    </aside>
+
+    <div id="product-modal" class="modal" aria-hidden="true"><div class="modal-content"><button id="modal-close" class="modal-close">×</button><div id="modal-body"></div></div></div>
+
+    <section class="notes">
+      <p class="muted">ملاحظة: إن كان لديك مجلد build (dist) أو ملفات bundle مثل main.js سيكون الموقع الحقيقي محملاً تلقائياً.</p>
+      <button id="try-bundles" class="btn">حاول تحميل bundle (إن وُجد)</button>
+    </section>
+  </main>
+
+  <footer class="site-footer container"><p>© <span id="year"></span> Platinum Store Pro</p></footer>
+
+  <script type="module" src="app.js"></script>
+  <script>
+    // محاولات تلقائية لتحميل bundle إن وُجد (root أو /dist)
+    (function(){
+      const candidates = ['/main.js','/runtime.js','/polyfills.js','/index.js','/bundle.js','/dist/main.js','/dist/index.js','/dist/bundle.js'];
+      let loaded=false;
+      function tryLoad(i=0){
+        if(loaded||i>=candidates.length) return;
+        const s=document.createElement('script'); s.src=candidates[i]; s.type='module'; s.onload=()=>{loaded=true; console.info('Loaded',candidates[i]); document.body.classList.add('app-loaded');};
+        s.onerror=()=> setTimeout(()=>tryLoad(i+1),100);
+        document.head.appendChild(s);
+      }
+      document.getElementById('try-bundles').addEventListener('click', ()=> tryLoad(0));
+      window.addEventListener('load', ()=> setTimeout(()=>tryLoad(0),300));
+    })();
+  </script>
+</body>
+</html>
