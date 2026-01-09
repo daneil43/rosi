@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Platinum Store Pro</title>
+  <!-- مهم: قاعدة المسار لعمل الموقع داخل https://<user>.github.io/rosi/ -->
+  <base href="/rosi/">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <div id="app-root">
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="logo" aria-hidden>
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#0ea5e9"/><path d="M7 12h10M12 7v10" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <h1>Platinum Store Pro</h1>
+            <p class="subtitle">نسخة ثابتة جاهزة للنشر</p>
+          </div>
+        </div>
+        <nav class="site-nav"><button id="cart-btn" class="btn-ghost">السلة (<span id="cart-count">0</span>)</button></nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <h2>مرحباً — متجر Platinum</h2>
+        <p class="muted">هذه نسخة احتياطية ثابتة تعمل دون build. إن وُجدت ملفات build (main.js...) في المستودع ستُحمّل تلقائياً.</p>
+        <div class="controls">
+          <input id="search" placeholder="ابحث عن منتجات..." />
+          <select id="category-filter"><option value="">كل التصنيفات</option></select>
+        </div>
+      </section>
+
+      <section>
+        <div id="products-grid" class="grid" aria-live="polite"></div>
+      </section>
+
+      <aside id="cart-drawer" class="cart-drawer" aria-hidden="true">
+        <div class="cart-header"><h3>سلة التسوق</h3><button id="close-cart" class="btn-ghost">اغلاق</button></div>
+        <div id="cart-items" class="cart-items">لم يتم إضافة أي منتجات بعد.</div>
+        <div class="cart-footer">المجموع: <strong id="cart-total">0 د.ج</strong></div>
+      </aside>
+
+      <div id="product-modal" class="modal" aria-hidden="true"><div class="modal-content"><button class="modal-close" id="modal-close">×</button><div id="modal-body"></div></div></div>
+
+      <section class="notes">
+        <p class="muted">اضغط "حاول تحميل build" لو كان لديك مخرجات Angular (dist) في الريبو.</p>
+        <div style="margin-top:10px">
+          <button id="try-bundles" class="btn">حاول تحميل build (إن وُجد)</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer container"><p>© <span id="year"></span> Platinum Store Pro</p></footer>
+  </div>
+
+  <script type="module" src="app.js"></script>
+  <script>
+    // محاولة تحميل ملفات build إن وُجدت داخل المسار النسبي (تأخذ بالاعتبار <base>)
+    (function(){
+      const candidates = ['main.js','runtime.js','polyfills.js','index.js','bundle.js','dist/main.js','dist/index.js','dist/bundle.js'];
+      let loaded=false;
+      function tryLoad(i=0){
+        if(loaded||i>=candidates.length) return;
+        const s=document.createElement('script'); s.src=candidates[i]; s.type='module'; s.defer=true;
+        s.onload=()=>{ loaded=true; document.body.classList.add('app-loaded'); console.info('Loaded', candidates[i]); };
+        s.onerror=()=> setTimeout(()=>tryLoad(i+1), 120);
+        document.head.appendChild(s);
+      }
+      document.getElementById('try-bundles').addEventListener('click', ()=> tryLoad(0));
+      window.addEventListener('load', ()=> setTimeout(()=>tryLoad(0), 300));
+    })();
+  </script>
+</body>
+</html>
