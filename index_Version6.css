@@ -1,0 +1,26 @@
+/* index.css — أنماط خفيفة للنسخة الثابتة */
+:root { --accent: #3b82f6; --bg: #0b1220; }
+body { background: linear-gradient(180deg,#071125 0%, #0b1220 100%); }
+
+/* Buttons */
+.filter-btn {
+  background: rgba(255,255,255,0.06);
+  color: #e6eef8;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  font-weight: 700;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+.filter-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(59,130,246,0.12); }
+
+/* Product card tweaks */
+.product-card { transition: transform .18s ease, box-shadow .18s ease; }
+.product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(2,6,23,0.6); }
+
+/* make sure RTL layout looks nice */
+html[dir="rtl"] .product-card { text-align: right; }
+
+/* small responsive fixes */
+@media (min-width: 1024px) {
+  #products-grid { gap: 1.25rem; }
+}

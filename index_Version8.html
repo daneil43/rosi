@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Platinum Store Pro — معرض ثابت</title>
+  <link rel="icon" href="favicon.ico" />
+  <!-- Tailwind CDN for quick styles -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="index.css">
+  <meta name="robots" content="noindex, nofollow">
+</head>
+<body class="antialiased bg-slate-900 text-slate-100" style="font-family: 'Tajawal', sans-serif;">
+  <div class="min-h-screen flex flex-col">
+    <header class="bg-gradient-to-l from-slate-800 to-slate-900/80 border-b border-slate-700">
+      <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
+            <i class="fa-solid fa-store text-2xl text-white"></i>
+          </div>
+          <div>
+            <h1 class="text-2xl font-black">المتجر البلاتيني</h1>
+            <p class="text-slate-300 text-sm">نسخة ثابتة مؤقتة لعرض المتجر — جاهزة للنشر</p>
+          </div>
+        </div>
+        <nav class="flex items-center gap-3">
+          <a href="#store" class="text-slate-200 hover:text-white">المتجر</a>
+          <a href="#checkout" class="text-slate-200 hover:text-white">الخروج</a>
+          <a href="#admin" class="text-slate-200 hover:text-white">لوحة التحكم</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-10 flex-grow">
+      <!-- Hero -->
+      <section class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-4">جودة بلاتينية وأناقة عصرية</h2>
+        <p class="max-w-2xl mx-auto text-slate-300">مرحباً بك في نسخة العرض السريعة: إذا كان تطبيق Angular لم يُبنَ بعد فستعرض هذه الصفحة بدلاً من صفحة بيضاء.</p>
+      </section>
+
+      <!-- Filters -->
+      <section id="store" class="mb-8">
+        <div class="flex flex-wrap items-center gap-3 justify-center mb-6">
+          <button class="filter-btn" data-filter="all">الكل</button>
+        </div>
+
+        <!-- Grid -->
+        <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- منتجات تُملأ بواسطة JS -->
+        </div>
+      </section>
+
+      <!-- Footer quick -->
+      <section id="info" class="mt-14 text-center text-slate-400">
+        <p>هذه نسخة ثابتة مؤقتة. إذا تفضّلت تشغيل التطبيق الأصلي (Angular) على جهازك: نفّذ <code>npm install</code> ثم <code>npm run build</code> ثم ضع محتوى مجلد <code>/dist</code> في الاستضافة.</p>
+      </section>
+    </main>
+
+    <footer class="bg-slate-800 border-t border-slate-700 py-6 text-center text-slate-400">
+      © <span id="year"></span> المتجر البلاتيني — نسخة عرض ثابتة
+    </footer>
+  </div>
+
+  <template id="product-template">
+    <div class="product-card bg-white/5 p-4 rounded-xl flex flex-col">
+      <div class="h-40 mb-4 bg-center bg-cover rounded-lg" data-img></div>
+      <h3 class="font-bold text-lg" data-name></h3>
+      <p class="text-slate-300 mt-2 text-sm flex-grow" data-desc></p>
+      <div class="mt-4 flex items-center justify-between">
+        <span class="font-black text-blue-300" data-price></span>
+        <button class="px-3 py-2 rounded-xl bg-blue-600 text-white text-sm">أضف للسلة</button>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    // بسيط: بيانات افتراضية مشابهة للـ product.service
+    const PRODUCTS = [
+      { id:1, name: 'حذاء رياضي عصري', price: 12000, category:'أحذية', image:'https://picsum.photos/seed/shoe/600/600', description:'مصمم للراحة والأداء العالي.' },
+      { id:2, name: 'ساعة بلاتينية فاخرة', price: 15000, category:'ساعات', image:'https://picsum.photos/seed/watch/600/600', description:'دقة وأناقة في تصميم واحد.' },
+      { id:3, name: 'كاميرا احترافية', price: 85000, category:'إلكترونيات', image:'https://picsum.photos/seed/camera/600/600', description:'التقط كل التفاصيل بدقة عالية.' },
+      { id:4, name: 'نظارات شمسية', price: 7500, category:'اكسسوارات', image:'https://picsum.photos/seed/glasses/600/600', description:'حماية وأناقة لعينيك.' }
+    ];
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function formatNumber(n){ return n.toLocaleString('ar-DZ'); }
+
+    const grid = document.getElementById('products-grid');
+    const tpl = document.getElementById('product-template');
+
+    PRODUCTS.forEach(p => {
+      const node = tpl.content.cloneNode(true);
+      node.querySelector('[data-img]').style.backgroundImage = `url(${p.image})`;
+      node.querySelector('[data-name]').textContent = p.name;
+      node.querySelector('[data-desc]').textContent = p.description;
+      node.querySelector('[data-price]').innerHTML = `${formatNumber(p.price)} <small class="text-xs">د.ج</small>`;
+      grid.appendChild(node);
+    });
+
+    // زر تحميل سريع (موجود في التصميم الأصلي) — هنا يظهر رسالة مساعدة
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => alert('هذه صفحة عرض ثابتة. لتشغيل التطبيق الأصلي، اتبع تعليمات البناء في README.'));
+    });
+  </script>
+</body>
+</html>
