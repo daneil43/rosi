@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "حقيبة ظهر أنيقة",
+    "description": "حقيبة ظهر متينة وعصرية بمقاس مناسب للعمل والسفر.",
+    "category": "أمتعة",
+    "price": 10500,
+    "image": "https://picsum.photos/seed/backpack/600/400"
+  },
+  {
+    "id": 2,
+    "name": "ساعة ذكية متعددة الوظائف",
+    "description": "ساعة مع تتبع النشاط، إشعارات الهاتف، وتصميم أنيق.",
+    "category": "إلكترونيات",
+    "price": 24999,
+    "image": "https://picsum.photos/seed/watch/600/400"
+  },
+  {
+    "id": 3,
+    "name": "سماعات لاسلكية عالية الجودة",
+    "description": "صوت نقِي وراحة عند الاستخدام لفترات طويلة.",
+    "category": "إلكترونيات",
+    "price": 7999,
+    "image": "https://picsum.photos/seed/headset/600/400"
+  }
+]
