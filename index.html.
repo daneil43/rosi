@@ -1,0 +1,47 @@
+<div class="app-container">
+  <!-- Header Section -->
+  <header class="app-header">
+    <div class="header-content">
+      <h1 class="app-title">Platinum Store Pro</h1>
+      <nav class="header-nav">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Welcome Section -->
+  <section class="welcome-section">
+    <div class="welcome-content">
+      <h2>Welcome to Platinum Store Pro</h2>
+      <p>Your premier destination for premium products and exceptional service.</p>
+      <p class="user-greeting">Logged in as: <span class="username">daneil43</span></p>
+    </div>
+  </section>
+
+  <!-- Date and Time Display -->
+  <section class="datetime-section">
+    <div class="datetime-display">
+      <h3>Current Date and Time</h3>
+      <p class="datetime-value">{{ currentDateTime }}</p>
+      <p class="datetime-note">(UTC - YYYY-MM-DD HH:MM:SS)</p>
+    </div>
+  </section>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <div class="content-wrapper">
+      <p>Explore our collection of premium products and services designed to meet your needs.</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>&copy; 2026 Platinum Store Pro. All rights reserved.</p>
+  </footer>
+</div>
